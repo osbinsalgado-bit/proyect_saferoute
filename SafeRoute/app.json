@@ -4,17 +4,28 @@
     "slug": "SafeRoute",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon_app.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    
     "splash": {
-      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "preventAutoHide": true
+        }
+      ]
+    ],
+
     "ios": {
       "supportsTablet": true
     },
+
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -23,6 +34,7 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
+
     "web": {
       "favicon": "./assets/favicon.png"
     }
