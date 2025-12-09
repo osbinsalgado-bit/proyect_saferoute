@@ -1,10 +1,10 @@
-// ...existing code...
+
 import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Image } from 'react-native';
 import { useTheme } from '../contexts/ThemeContext';
 
 const SplashScreenAnimated = () => {
-  // Este componente solo muestra la animación; el StackNavigator controla el tiempo de visibilidad.
+
   const { colors } = useTheme();
   
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -58,4 +58,3 @@ const styles = StyleSheet.create({
 });
 
 export default SplashScreenAnimated;
-// ...existing code...

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Importante
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
@@ -22,7 +22,7 @@ export default function RegisterScreen() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [photo, setPhoto] = useState<string | null>(null); // Estado para la foto
+  const [photo, setPhoto] = useState<string | null>(null); //para la foto
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>(null);
@@ -55,8 +55,7 @@ export default function RegisterScreen() {
 
     setLoading(true);
     try {
-      // 2. REGISTRO EN SUPABASE (Enviamos metadata para el Trigger SQL)
-      // Nota: El trigger creará la fila en 'profiles' con firstName, lastName, etc.
+
       const { data, error: regError } = await register(email, password, { 
         first_name: firstName, 
         last_name: lastName, 
@@ -68,12 +67,10 @@ export default function RegisterScreen() {
       // 3. LÓGICA DE SUBIDA DE IMAGEN
       if (data.user) {
         if (data.session) {
-          // A) Si hay sesión (Auto-confirmación), subimos YA.
+  
           if (photo) {
              await uploadAvatarToStorage(photo, data.user.id);
-             // No necesitamos actualizar profiles aquí, el trigger ya creó la fila, 
-             // pero idealmente deberíamos hacer un update del avatar_url.
-             // Pero para simplificar, dejemos que el login lo maneje o hacerlo aqui si es vital.
+
           }
           navigation.reset({ index: 0, routes: [{ name: 'Main' }] });
         } else {
