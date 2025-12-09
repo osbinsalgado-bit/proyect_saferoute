@@ -14,7 +14,6 @@ export async function uploadAvatarToStorage(fileUri: string, userId: string) {
     const fileName = `avatar_${Date.now()}.${ext}`;
     const path = `${userId}/${fileName}`;
 
-    // --- CORRECCIÓN AQUÍ ---
     // Usamos el string 'base64' directamente para evitar el error de EncodingType
     const base64 = await FileSystem.readAsStringAsync(fileUri, {
       encoding: 'base64', 
