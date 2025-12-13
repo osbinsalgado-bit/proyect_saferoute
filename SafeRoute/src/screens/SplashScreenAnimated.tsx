@@ -35,7 +35,7 @@ const SplashScreenAnimated = () => {
         }}
       >
         <Image 
-          source={require('../../assets/icon_app.png')} 
+          source={require('../../assets/splash.png')} 
           style={{ width: 150, height: 150, resizeMode: 'contain' }} 
         />
         <Text style={[styles.title, { color: colors?.text || '#000' }]}>SafeRoute</Text>
