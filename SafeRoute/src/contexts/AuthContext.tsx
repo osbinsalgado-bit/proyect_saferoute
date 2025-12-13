@@ -6,10 +6,11 @@ type AuthContextType = {
     user: User | null;
     session: Session | null;
     isLoading: boolean;
-    // Importante: Prometemos devolver 'any' para manejar errores en la UI
     login: (email:string, password:string) => Promise<any>;
     register: (email:string, password:string, data: any) => Promise<any>;
     logout: () => Promise<void>;
+    // AGREGAMOS ESTO: Definición de la nueva función
+    changePassword: (oldPassword: string, newPassword: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -26,7 +27,6 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Restaurar sesión al abrir la app
         const restoreSession = async () => {
             const { data } = await supabase.auth.getSession();
             setSession(data.session);
@@ -35,7 +35,6 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         };
         restoreSession();
 
-        // Escuchar cambios (login, logout, token refresh)
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
             setUser(session?.user ?? null);
@@ -46,7 +45,6 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     }, []);
 
     const login = async (email: string, password: string) => {
-        // NO usamos Alert aquí. Retornamos el resultado para que LoginScreen muestre el mensaje con estilo.
         const result = await supabase.auth.signInWithPassword({ email, password });
         return result; 
     };
@@ -55,7 +53,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         const result = await supabase.auth.signUp({
             email,
             password,
-            options: { data: userData } // Pasamos nombre, telefono para el trigger
+            options: { data: userData }
         });
         return result;
     };
@@ -66,8 +64,33 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         setUser(null);
     };
 
+    // --- NUEVA FUNCIÓN AGREGADA ---
+    const changePassword = async (oldPassword: string, newPassword: string) => {
+        if (!user || !user.email) throw new Error("No hay usuario autenticado.");
+
+        // 1. Verificar la contraseña vieja haciendo un re-login silencioso
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+            email: user.email,
+            password: oldPassword
+        });
+
+        if (signInError) {
+            throw new Error("La contraseña actual es incorrecta.");
+        }
+
+        // 2. Si la vieja es correcta, actualizamos a la nueva
+        const { error: updateError } = await supabase.auth.updateUser({
+            password: newPassword
+        });
+
+        if (updateError) {
+            throw new Error(updateError.message);
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ user, session, isLoading, login, register, logout }}>
+        // Agregamos changePassword al value del provider
+        <AuthContext.Provider value={{ user, session, isLoading, login, register, logout, changePassword }}>
             {children}
         </AuthContext.Provider>
     );

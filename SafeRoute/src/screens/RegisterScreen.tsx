@@ -72,7 +72,8 @@ export default function RegisterScreen() {
              await uploadAvatarToStorage(photo, data.user.id);
 
           }
-          navigation.reset({ index: 0, routes: [{ name: 'Main' }] });
+          // NO hacer reset - dejar que StackNavigator reaccione automáticamente
+          // al cambio de usuario en AuthContext
         } else {
           // B) Si NO hay sesión (Requiere confirmar correo), guardamos foto LOCALMENTE.
           if (photo) {

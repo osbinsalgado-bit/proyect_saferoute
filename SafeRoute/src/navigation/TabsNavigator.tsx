@@ -7,16 +7,15 @@ import { getThemeColors } from "../util/theme";
 // Importación de Pantallas (según los nombres de tu imagen)
 import HomeScreen from "../screens/HomeScreen";
 import RoutePlanningScreen from "../screens/RoutePlanningScreen";
-import PastRoutesScreen from "../screens/FavoriteRoutesScreen"; 
 import ProfileScreen from "../screens/ProfileScreen";
 import SettingScreen from "../screens/SettingScreen"; 
-import SavedLocations from "../screens/SavedLocationsScreen";
+import FavoriteRoutesScreen from "../screens/FavoriteRoutesScreen";
 
 // Definición de tipos para las rutas
 export type TabsParamList = {
     Home: undefined;
     RoutePlanning: undefined;
-    PastRoutes: undefined;
+    FavoriteRoutes: undefined;
     Profile: undefined;
     Settings: undefined;
     SavedLocations: undefined;
@@ -81,8 +80,8 @@ const TabsNavigator = () => {
 
       {/* 3. Historial de Rutas */}
       <Tab.Screen
-        name="PastRoutes"
-        component={PastRoutesScreen}
+        name="FavoriteRoutes"
+        component={FavoriteRoutesScreen}
         options={({ navigation }) => ({
           headerShown: true,
           title: "Favoritos",
@@ -141,28 +140,6 @@ const TabsNavigator = () => {
           ),
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="settings" size={size} color={color} />
-          ),
-        })}
-      />
-
-      {/* 4. rutas programadas */}
-      <Tab.Screen
-        name="SavedLocations"
-        component={SavedLocations}
-        options={({ navigation }) => ({
-          headerShown: true,
-          title: "Rutas Programadas",
-          headerLeft: () => (
-            <MaterialIcons
-              name="arrow-back"
-              size={24}
-              color={colors.primary || '#007AFF'}
-              style={{ marginLeft: 12 }}
-              onPress={() => navigation.navigate("Home")}
-            />
-          ),
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="person" size={size} color={color} />
           ),
         })}
       />

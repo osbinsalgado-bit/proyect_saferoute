@@ -51,7 +51,8 @@ export default function LoginScreen() {
         await dispatch(fetchClientProfile(userId));
       }
 
-      navigation.reset({ index: 0, routes: [{ name: 'Main' }] });
+      // NO hacer reset - dejar que StackNavigator reaccione automáticamente
+      // al cambio de usuario en AuthContext
     } catch (err) {
       setError(err);
     } finally {

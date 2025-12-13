@@ -7,36 +7,44 @@
     "icon": "./assets/icon_app.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-    
     "splash": {
+      "image": "./assets/icon_app.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-
     "plugins": [
       [
         "expo-splash-screen",
         {
           "preventAutoHide": true
         }
-      ]
+      ],
+      "expo-font"
     ],
-
     "ios": {
       "supportsTablet": true
     },
-
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.osbin_salgado.SafeRoute",
+      "config": {
+        "googleMaps": {
+          "apiKey": "GOOGLE_MAPS_API_KEY_ENV" 
+        }
+      }
     },
-
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "372165dd-fd52-4c64-a96e-2d7802101a5e"
+      }
     }
   }
 }

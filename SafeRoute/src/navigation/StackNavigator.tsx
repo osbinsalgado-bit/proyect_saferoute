@@ -17,7 +17,7 @@ export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   // Grupo App (Cuando entra, va directo a los Tabs)
-  Home: undefined; 
+  Tabs: undefined; 
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -56,7 +56,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Splash" component={SplashScreenAnimated} />
       ) : user ? (
         // Usuario autenticado -> mostrar la App (Tabs)
-        <Stack.Screen name="Home" component={TabsNavigator} />
+        <Stack.Screen name="Tabs" component={TabsNavigator} />
       ) : (
         // Usuario no autenticado -> Login / Register
         <>
