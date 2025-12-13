@@ -8,7 +8,9 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "GOOGLE_MAPS_API_KEY_ENV": "AIzaSyCAPrghoHukwft-Hek2uPkQ1Q5tJoQZUXc"
+        "GOOGLE_MAPS_API_KEY_ENV": "AIzaSyCAPrghoHukwft-Hek2uPkQ1Q5tJoQZUXc",
+        "SUPABASE_URL_ENV": "https://gfbtiopyensfltauyvor.supabase.co",
+        "SUPABASE_ANON_KEY_ENV": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmYnRpb3B5ZW5zZmx0YXV5dm9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMzIwNjcsImV4cCI6MjA3OTYwODA2N30.B88tUIS8OJmA_BMARFyx7e_9jyC3DYHzPM0pzPfxZkg"
       }
     },
     "preview": {
@@ -17,7 +19,9 @@
         "buildType": "apk" 
       },
       "env": {
-        "GOOGLE_MAPS_API_KEY_ENV": "AIzaSyCAPrghoHukwft-Hek2uPkQ1Q5tJoQZUXc"
+        "GOOGLE_MAPS_API_KEY_ENV": "AIzaSyCAPrghoHukwft-Hek2uPkQ1Q5tJoQZUXc",
+        "SUPABASE_URL_ENV": "https://gfbtiopyensfltauyvor.supabase.co",
+        "SUPABASE_ANON_KEY_ENV": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmYnRpb3B5ZW5zZmx0YXV5dm9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMzIwNjcsImV4cCI6MjA3OTYwODA2N30.B88tUIS8OJmA_BMARFyx7e_9jyC3DYHzPM0pzPfxZkg"
       }
     },
     "production": {
